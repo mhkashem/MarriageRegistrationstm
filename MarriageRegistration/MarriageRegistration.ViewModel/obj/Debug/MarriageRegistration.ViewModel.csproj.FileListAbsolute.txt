@@ -1,0 +1,5 @@
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.ViewModel\bin\Debug\MarriageRegistration.ViewModel.dll
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.ViewModel\bin\Debug\MarriageRegistration.ViewModel.pdb
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.ViewModel\obj\Debug\MarriageRegistration.ViewModel.csproj.CoreCompileInputs.cache
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.ViewModel\obj\Debug\MarriageRegistration.ViewModel.dll
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.ViewModel\obj\Debug\MarriageRegistration.ViewModel.pdb

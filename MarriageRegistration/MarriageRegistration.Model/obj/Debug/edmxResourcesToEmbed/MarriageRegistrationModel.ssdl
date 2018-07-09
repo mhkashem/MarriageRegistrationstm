@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarriageRegistrationDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attorney">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="MarriageRegistrationId" Type="int" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Kazi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="KaziNID" Type="int" />
+  </EntityType>
+  <EntityType Name="MarriageRegister">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Mohor" Type="float" />
+    <Property Name="KaziId" Type="int" />
+  </EntityType>
+  <EntityType Name="NID">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="DistrictId" Type="int" />
+    <Property Name="ThanaId" Type="int" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Thana">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Attorney_MarriageRegistration">
+    <End Role="MarriageRegister" Type="Self.MarriageRegister" Multiplicity="0..1" />
+    <End Role="Attorney" Type="Self.Attorney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarriageRegister">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Attorney">
+        <PropertyRef Name="MarriageRegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kazi_NID">
+    <End Role="NID" Type="Self.NID" Multiplicity="0..1" />
+    <End Role="Kazi" Type="Self.Kazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NID">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kazi">
+        <PropertyRef Name="KaziNID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarriageRegistration_Kazi">
+    <End Role="Kazi" Type="Self.Kazi" Multiplicity="0..1" />
+    <End Role="MarriageRegister" Type="Self.MarriageRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kazi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarriageRegister">
+        <PropertyRef Name="KaziId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NID_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="NID" Type="Self.NID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NID">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NID_Thana">
+    <End Role="Thana" Type="Self.Thana" Multiplicity="0..1" />
+    <End Role="NID" Type="Self.NID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thana">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NID">
+        <PropertyRef Name="ThanaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarriageRegistrationDBModelStoreContainer">
+    <EntitySet Name="Attorney" EntityType="Self.Attorney" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kazi" EntityType="Self.Kazi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MarriageRegister" EntityType="Self.MarriageRegister" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NID" EntityType="Self.NID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Thana" EntityType="Self.Thana" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Attorney_MarriageRegistration" Association="Self.FK_Attorney_MarriageRegistration">
+      <End Role="MarriageRegister" EntitySet="MarriageRegister" />
+      <End Role="Attorney" EntitySet="Attorney" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kazi_NID" Association="Self.FK_Kazi_NID">
+      <End Role="NID" EntitySet="NID" />
+      <End Role="Kazi" EntitySet="Kazi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarriageRegistration_Kazi" Association="Self.FK_MarriageRegistration_Kazi">
+      <End Role="Kazi" EntitySet="Kazi" />
+      <End Role="MarriageRegister" EntitySet="MarriageRegister" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NID_District" Association="Self.FK_NID_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="NID" EntitySet="NID" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NID_Thana" Association="Self.FK_NID_Thana">
+      <End Role="Thana" EntitySet="Thana" />
+      <End Role="NID" EntitySet="NID" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

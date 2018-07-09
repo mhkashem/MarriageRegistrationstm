@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarriageRegistrationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Attorney">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MarriageRegistrationId" Type="Int32" />
+    <NavigationProperty Name="MarriageRegister" Relationship="MarriageRegistrationDBModel.FK_Attorney_MarriageRegistration1" FromRole="Attorney" ToRole="MarriageRegister" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NIDs" Relationship="Self.FK_NID_District" FromRole="District" ToRole="NID" />
+  </EntityType>
+  <EntityType Name="Kazi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KaziNID" Type="Int32" />
+    <NavigationProperty Name="NID" Relationship="Self.FK_Kazi_NID" FromRole="Kazi" ToRole="NID" />
+    <NavigationProperty Name="MarriageRegisters" Relationship="MarriageRegistrationDBModel.FK_MarriageRegistration_Kazi1" FromRole="Kazi" ToRole="MarriageRegister" />
+  </EntityType>
+  <EntityType Name="NID">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="DistrictId" Type="Int32" />
+    <Property Name="ThanaId" Type="Int32" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="District" Relationship="Self.FK_NID_District" FromRole="NID" ToRole="District" />
+    <NavigationProperty Name="Kazis" Relationship="Self.FK_Kazi_NID" FromRole="NID" ToRole="Kazi" />
+    <NavigationProperty Name="Thana" Relationship="Self.FK_NID_Thana" FromRole="NID" ToRole="Thana" />
+  </EntityType>
+  <EntityType Name="Thana">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NIDs" Relationship="Self.FK_NID_Thana" FromRole="Thana" ToRole="NID" />
+  </EntityType>
+  <Association Name="FK_NID_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="NID" Type="Self.NID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NID">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kazi_NID">
+    <End Role="NID" Type="Self.NID" Multiplicity="0..1" />
+    <End Role="Kazi" Type="Self.Kazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NID">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kazi">
+        <PropertyRef Name="KaziNID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NID_Thana">
+    <End Role="Thana" Type="Self.Thana" Multiplicity="0..1" />
+    <End Role="NID" Type="Self.NID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thana">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NID">
+        <PropertyRef Name="ThanaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarriageRegistrationDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Attorneys" EntityType="Self.Attorney" />
+    <EntitySet Name="Districts" EntityType="Self.District" />
+    <EntitySet Name="Kazis" EntityType="Self.Kazi" />
+    <EntitySet Name="NIDs" EntityType="Self.NID" />
+    <EntitySet Name="Thanas" EntityType="Self.Thana" />
+    <AssociationSet Name="FK_NID_District" Association="Self.FK_NID_District">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="NID" EntitySet="NIDs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kazi_NID" Association="Self.FK_Kazi_NID">
+      <End Role="NID" EntitySet="NIDs" />
+      <End Role="Kazi" EntitySet="Kazis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NID_Thana" Association="Self.FK_NID_Thana">
+      <End Role="Thana" EntitySet="Thanas" />
+      <End Role="NID" EntitySet="NIDs" />
+    </AssociationSet>
+    <EntitySet Name="MarriageRegisters" EntityType="MarriageRegistrationDBModel.MarriageRegister" />
+    <EntitySet Name="sysdiagrams" EntityType="MarriageRegistrationDBModel.sysdiagram" />
+    <AssociationSet Name="FK_Attorney_MarriageRegistration1" Association="MarriageRegistrationDBModel.FK_Attorney_MarriageRegistration1">
+      <End Role="MarriageRegister" EntitySet="MarriageRegisters" />
+      <End Role="Attorney" EntitySet="Attorneys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarriageRegistration_Kazi1" Association="MarriageRegistrationDBModel.FK_MarriageRegistration_Kazi1">
+      <End Role="Kazi" EntitySet="Kazis" />
+      <End Role="MarriageRegister" EntitySet="MarriageRegisters" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MarriageRegister">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Mohor" Type="Double" />
+    <Property Name="KaziId" Type="Int32" />
+    <NavigationProperty Name="Attorneys" Relationship="MarriageRegistrationDBModel.FK_Attorney_MarriageRegistration1" FromRole="MarriageRegister" ToRole="Attorney" />
+    <NavigationProperty Name="Kazi" Relationship="MarriageRegistrationDBModel.FK_MarriageRegistration_Kazi1" FromRole="MarriageRegister" ToRole="Kazi" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Attorney_MarriageRegistration1">
+    <End Type="MarriageRegistrationDBModel.MarriageRegister" Role="MarriageRegister" Multiplicity="0..1" />
+    <End Type="MarriageRegistrationDBModel.Attorney" Role="Attorney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarriageRegister">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Attorney">
+        <PropertyRef Name="MarriageRegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarriageRegistration_Kazi1">
+    <End Type="MarriageRegistrationDBModel.Kazi" Role="Kazi" Multiplicity="0..1" />
+    <End Type="MarriageRegistrationDBModel.MarriageRegister" Role="MarriageRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kazi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarriageRegister">
+        <PropertyRef Name="KaziId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

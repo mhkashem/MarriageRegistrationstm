@@ -1,0 +1,22 @@
+﻿<div class="container">
+    <div class="row">
+
+        <div class="col-sm-8 col-sm-offset-2">
+            <!-- FORM ============ -->
+
+            <form name="userForm" ng-submit="submitForm()" novalidate>
+                <!-- Marriage Date -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.marriageRegNo.$invalid && !userForm.marriageRegNo.$pristine }">
+                    <label>Marriage Registration Number</label>
+                    <input type="text" name="marriageRegNo" class="form-control" ng-model="user.marriageRegNo" required>
+                    <p ng-show="userForm.marriageRegNo.$invalid && !userForm.marriageRegNo.$pristine" class="help-block">Marriage date is required.</p>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" ng-click="maritalStatus(user)" ng-disabled="userForm.$invalid">Submit</button>
+            </form>
+           
+            <div ng-if="error" style="background-color:aliceblue; color:red;">
+                {{mmsg}}
+            </div>
+        </div>
+        </div>
+    </div>

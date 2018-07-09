@@ -1,0 +1,11 @@
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\bin\Debug\MarriageRegistration.Model.dll.config
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\bin\Debug\MarriageRegistration.Model.dll
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\bin\Debug\MarriageRegistration.Model.pdb
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\bin\Debug\EntityFramework.dll
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\bin\Debug\EntityFramework.xml
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\obj\Debug\MarriageRegistration.Model.csproj.CoreCompileInputs.cache
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\obj\Debug\MarriageRegistration.Model.dll
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\obj\Debug\MarriageRegistration.Model.pdb
+E:\Web Project 2\MarriageRegistration\MarriageRegistration.Model\obj\Debug\MarriageRegistration.Model.csprojResolveAssemblyReference.cache

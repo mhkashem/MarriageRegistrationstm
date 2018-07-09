@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MarriageRegistrationDBModelStoreContainer" CdmEntityContainer="MarriageRegistrationDBEntities">
+    <EntitySetMapping Name="Attorneys">
+      <EntityTypeMapping TypeName="MarriageRegistrationDBModel.Attorney">
+        <MappingFragment StoreEntitySet="Attorney">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BrideAttorneyName" ColumnName="BrideAttorneyName" />
+          <ScalarProperty Name="MarriageRegistrationId" ColumnName="MarriageRegistrationId" />
+          <ScalarProperty Name="BrideAttorneyNID" ColumnName="BrideAttorneyNID" />
+          <ScalarProperty Name="BridegroomAttorneyName" ColumnName="BridegroomAttorneyName" />
+          <ScalarProperty Name="BridegroomAttorneyNID" ColumnName="BridegroomAttorneyNID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kazis">
+      <EntityTypeMapping TypeName="MarriageRegistrationDBModel.Kazi">
+        <MappingFragment StoreEntitySet="Kazi">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarriageRegisters">
+      <EntityTypeMapping TypeName="MarriageRegistrationDBModel.MarriageRegister">
+        <MappingFragment StoreEntitySet="MarriageRegister">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="BridegroomName" ColumnName="BridegroomName" />
+          <ScalarProperty Name="BridegroomNID" ColumnName="BridegroomNID" />
+          <ScalarProperty Name="BrideName" ColumnName="BrideName" />
+          <ScalarProperty Name="BrideNID" ColumnName="BrideNID" />
+          <ScalarProperty Name="Mohor" ColumnName="Mohor" />
+          <ScalarProperty Name="Moajjal" ColumnName="Moajjal" />
+          <ScalarProperty Name="NonMoajjal" ColumnName="NonMoajjal" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="NikhaReaderName" ColumnName="NikhaReaderName" />
+          <ScalarProperty Name="NikhaReaderNameNID" ColumnName="NikhaReaderNameNID" />
+          <ScalarProperty Name="WitnessId" ColumnName="WitnessId" />
+          <ScalarProperty Name="AttorneyId" ColumnName="AttorneyId" />
+          <ScalarProperty Name="kaziId" ColumnName="kaziId" />
+          <ScalarProperty Name="MarriageRegiNo" ColumnName="MarriageRegiNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NationalIDs">
+      <EntityTypeMapping TypeName="MarriageRegistrationDBModel.NationalID">
+        <MappingFragment StoreEntitySet="NationalID">
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Witnesses">
+      <EntityTypeMapping TypeName="MarriageRegistrationDBModel.Witness">
+        <MappingFragment StoreEntitySet="Witness">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Witness1" ColumnName="Witness1" />
+          <ScalarProperty Name="Witness2" ColumnName="Witness2" />
+          <ScalarProperty Name="Witness3" ColumnName="Witness3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

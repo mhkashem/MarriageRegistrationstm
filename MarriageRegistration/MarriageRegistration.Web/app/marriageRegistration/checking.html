@@ -1,0 +1,70 @@
+﻿<section id="contact">
+    <div class="contact-section">
+        <div class="container">
+          
+                <div class="col-md-6">
+                    <form name="userForm">
+                        <div class="form-group" ng-class="{ 'has-error' : userForm.bnid.$invalid && !userForm.bnid.$pristine }">
+                            <label>Bride NID</label>
+                            <input type="text" name="bnid" class="form-control"  ng-model="user.bnid"  required>
+                            <p ng-show="userForm.bnid.$invalid && !userForm.bnid.$pristine" class="help-block">Bride NID is required.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" ng-disabled="userForm.$invalid" ng-click="BrideChecking(user)">Check</button>
+                        
+                    </form>
+                    <br />
+                    <div ng-if="msg" style="border:1px solid; border-color:#0094ff; text-align:center;">
+                        <label ng-repeat="item in value">Name : {{item.name}}</label><br />
+                        <label ng-repeat="item in value">Father Name : {{item.fatherName}}</label><br />
+                        <label ng-repeat="item in value">Mother Name : {{item.motherName}}</label><br />
+                        <label ng-repeat="item in value">Date Of Birth : {{item.birthday}}</label><br />
+                        <label ng-repeat="item in value">Address : {{item.address}}</label>
+                    </div>
+                    <div ng-if="error" style="background-color:aliceblue; color:red;">
+                        {{mmsg}}
+                    </div>
+                </div>
+
+            
+
+                <div class="col-md-6">
+                    <form name="userForm1">
+                        <div class="form-group" ng-class="{ 'has-error' : userForm1.bgnid.$invalid && !userForm1.bgnid.$pristine }">
+                            <label>Bridegroom NID</label>
+                            <input type="text" name="bgnid" class="form-control" ng-model="user1.bgnid" required>
+                            <p ng-show="userForm1.bgnid.$invalid && !userForm1.bgnid.$pristine" class="help-block">Bride NID is required.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" ng-disabled="userForm1.$invalid" ng-click="BridegroomChecking(user1)">Check</button>
+                    </form>
+                    <br />
+                    <div ng-if="ms" style="border:1px solid; border-color:#0094ff; text-align:center;">
+                        <label ng-repeat="item in value1">Name : {{item.name}}</label><br />
+                        <label ng-repeat="item in value1">Father Name : {{item.fatherName}}</label><br />
+                        <label ng-repeat="item in value1">Mother Name : {{item.motherName}}</label><br />
+                        <label ng-repeat="item in value1">Date Of Birth : {{item.birthday}}</label><br />
+                        <label ng-repeat="item in value1">Address : {{item.address}}</label>
+                    </div>
+                    <div ng-if="a" style="background-color:aliceblue; color:red;">
+                        {{mms}}
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            
+         
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="btnRegister"></label>
+              
+                <div class="col-md-4">
+                    <button id="btnRegister" name="btnRegister" ng-show="show" ng-click="register()" class="btn btn-primary center-block">
+                        Get Married
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        </div>
+</section>
+<br />

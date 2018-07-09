@@ -1,0 +1,105 @@
+﻿
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-8 col-sm-offset-2" >
+            <!-- FORM ============ -->
+           
+            <!--<pre>{{brideinfo}}</pre>
+            <pre>{{bridegroominfo}}</pre>-->
+         
+            <form name="userForm" ng-submit="submitForm()" novalidate>
+               
+                <!-- Mahar -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.Mohor.$invalid && !userForm.Mohor.$pristine }">
+                    <label>Mahar</label>
+                    <input type="text" name="Mohor" class="form-control" ng-model="user.Mohor" required>
+                    <p ng-show="userForm.Mohor.$invalid && !userForm.Mohor.$pristine" class="help-block">Mahar is required.</p>
+                </div>
+                <!-- Mahar Moajjal -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.Moajjal.$invalid && !userForm.Moajjal.$pristine }">
+                    <label>Amount Of Mahar Moajjal</label>
+                    <input type="text" name="Moajjal" class="form-control" ng-model="user.Moajjal" required>
+                    <p ng-show="userForm.Moajjal.$invalid && !userForm.Moajjal.$pristine" class="help-block">Mahar moajjal is required.</p>
+                </div>
+                <!-- Mahar Non-Moajjal -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.NonMoajjal.$invalid && !userForm.NonMoajjal.$pristine }">
+                    <label>Amount Of Mahar Non-Moajjal</label>
+                    <input type="text" name="NonMoajjal" class="form-control" ng-model="user.NonMoajjal" required>
+                    <p ng-show="userForm.NonMoajjal.$invalid && !userForm.NonMoajjal.$pristine" class="help-block">Mahar Non-Moajjal is required.</p>
+                </div>
+                <!-- Paid Mahar Amount -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.PaidAmount.$invalid && !userForm.PaidAmount.$pristine }">
+                    <label>Paid Mahar Amount</label>
+                    <input type="text" name="PaidAmount" class="form-control" ng-model="user.PaidAmount" required>
+                    <p ng-show="userForm.PaidAmount.$invalid && !userForm.PaidAmount.$pristine" class="help-block">Paid Mahar is required.</p>
+                </div>
+                <!-- Bridegroom Attorney name -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.BridegroomAttorneyName.$invalid && !userForm.BridegroomAttorneyName.$pristine }">
+                    <label>Bridegroom Attorney Name</label>
+                    <input type="text" name="BridegroomAttorneyName" class="form-control" ng-model="user.BridegroomAttorneyName" required>
+                    <p ng-show="userForm.BridegroomAttorneyName.$invalid && !userForm.BridegroomAttorneyName.$pristine" class="help-block">Bridegroom attorney is required.</p>
+                </div>
+                <!-- Bridegroom Attorney NID -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.BridegroomAttorneyNID.$invalid && !userForm.BridegroomAttorneyNID.$pristine }">
+                    <label>Bridegroom Attorney NID</label>
+                    <input type="text" name="BridegroomAttorneyNID" class="form-control" ng-model="user.BridegroomAttorneyNID" required>
+                    <p ng-show="userForm.BridegroomAttorneyNID.$invalid && !userForm.BridegroomAttorneyNID.$pristine" class="help-block">Bridegroom attorney NID is required.</p>
+                </div>
+                <!-- Bride Attorney name -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.BrideAttorneyName.$invalid && !userForm.BrideAttorneyName.$pristine }">
+                    <label>Bride Attorney Name</label>
+                    <input type="text" name="BrideAttorneyName" class="form-control" ng-model="user.BrideAttorneyName" required>
+                    <p ng-show="userForm.BrideAttorneyName.$invalid && !userForm.BrideAttorneyName.$pristine" class="help-block">Bride attorney is required.</p>
+                </div>
+                <!-- Bride Attorney NID -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.BrideAttorneyNID.$invalid && !userForm.BrideAttorneyNID.$pristine }">
+                    <label>Bride Attorney NID</label>
+                    <input type="text" name="BrideAttorneyNID" class="form-control" ng-model="user.BrideAttorneyNID" required>
+                    <p ng-show="userForm.BrideAttorneyNID.$invalid && !userForm.BrideAttorneyNID.$pristine" class="help-block">Bride attorney NID is required.</p>
+                </div>
+                <!-- Marriage Witnesses -->
+                <label>Witnesses Of The Marriage</label>
+                <div class="row">
+                   
+                    <div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.Witness1Name.$invalid && !userForm.Witness1Name.$pristine }">
+                        <input id="Witness1Name" class="form-control" type="text" name="Witness1Name" ng-model="user.Witness1Name" placeholder="Witness 1" required/>
+                        <p ng-show="userForm.Witness1Name.$invalid && !userForm.Witness1Name.$pristine" class="help-block">Witness 1 name is required.</p>
+                    </div>
+                    <div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.Witness2Name.$invalid && !userForm.Witness2Name.$pristine }">
+                      
+                        <input id="witnessName2" class="form-control input-group-lg" type="text" name="Witness2Name" ng-model="user.Witness2Name" placeholder="witness 2" required/>
+                        <p ng-show="userForm.Witness2Name.$invalid && !userForm.Witness2Name.$pristine" class="help-block">Witness 2 name is required.</p>
+                    </div>
+                    <div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.Witness3Name.$invalid && !userForm.Witness3Name.$pristine }">
+                       
+                        <input id="Witness3Name" class="form-control input-group-lg reg_name" type="text" name="Witness3Name" ng-model="user.Witness3Name" placeholder="witness 2"  required />
+                        <p ng-show="userForm.Witness3Name.$invalid && !userForm.Witness3Name.$pristine" class="help-block">Witness 3 name is required.</p>
+                    </div>
+                </div>
+                <!-- Nikha Reader -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.NikhaReaderName.$invalid && !userForm.NikhaReaderName.$pristine }">
+                    <label>Nikha Reader Name</label>
+                    <input type="text" name="NikhaReaderName" class="form-control" ng-model="user.NikhaReaderName" ng-minlength="3" ng-maxlength="8" required>
+                    <p ng-show="userForm.NikhaReaderName.$invalid && !userForm.NikhaReaderName.$pristine" class="help-block">Nikha reader name is required.</p>
+
+                </div>
+                <!-- Nikha Reader NID -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.NikhaReaderNameNID.$invalid && !userForm.NikhaReaderNameNID.$pristine }">
+                    <label>Nikha Reader NID</label>
+                    <input type="text" name="NikhaReaderNameNID" class="form-control" ng-model="user.NikhaReaderNameNID" ng-minlength="3" ng-maxlength="8" required>
+                    <p ng-show="userForm.NikhaReaderNameNID.$invalid && !userForm.NikhaReaderNameNID.$pristine" class="help-block">Nikha reader NID name is required.</p>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary" ng-click="Submit(user)" ng-disabled="userForm.$invalid">Register</button>
+
+            </form>
+           
+
+        </div>
+        
+        </div>
+    </div>
+
+

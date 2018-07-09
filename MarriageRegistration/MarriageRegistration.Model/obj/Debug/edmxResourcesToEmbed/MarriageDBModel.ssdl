@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarriageRegistrationDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attorney">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BrideAttorneyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MarriageRegistrationId" Type="int" />
+    <Property Name="BrideAttorneyNID" Type="int" />
+    <Property Name="BridegroomAttorneyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BridegroomAttorneyNID" Type="int" />
+  </EntityType>
+  <EntityType Name="Kazi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="NID" Type="int" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MarriageRegister">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="BridegroomName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BridegroomNID" Type="nvarchar" MaxLength="50" />
+    <Property Name="BrideName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BrideNID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mohor" Type="float" />
+    <Property Name="Moajjal" Type="float" />
+    <Property Name="NonMoajjal" Type="float" />
+    <Property Name="PaidAmount" Type="float" />
+    <Property Name="NikhaReaderName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NikhaReaderNameNID" Type="nvarchar" MaxLength="50" />
+    <Property Name="WitnessId" Type="int" />
+    <Property Name="AttorneyId" Type="int" />
+    <Property Name="kaziId" Type="int" />
+    <Property Name="MarriageRegiNo" Type="nvarchar" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="NationalID">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birthday" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="NID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Witness">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Witness1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Witness2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Witness3" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_MarriageRegister_Attorney">
+    <End Role="Attorney" Type="Self.Attorney" Multiplicity="0..1" />
+    <End Role="MarriageRegister" Type="Self.MarriageRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attorney">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarriageRegister">
+        <PropertyRef Name="AttorneyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarriageRegister_Kazi">
+    <End Role="Kazi" Type="Self.Kazi" Multiplicity="0..1" />
+    <End Role="MarriageRegister" Type="Self.MarriageRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kazi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarriageRegister">
+        <PropertyRef Name="kaziId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarriageRegister_Witness">
+    <End Role="Witness" Type="Self.Witness" Multiplicity="0..1" />
+    <End Role="MarriageRegister" Type="Self.MarriageRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Witness">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarriageRegister">
+        <PropertyRef Name="WitnessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarriageRegistrationDBModelStoreContainer">
+    <EntitySet Name="Attorney" EntityType="Self.Attorney" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kazi" EntityType="Self.Kazi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MarriageRegister" EntityType="Self.MarriageRegister" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NationalID" EntityType="Self.NationalID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Witness" EntityType="Self.Witness" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MarriageRegister_Attorney" Association="Self.FK_MarriageRegister_Attorney">
+      <End Role="Attorney" EntitySet="Attorney" />
+      <End Role="MarriageRegister" EntitySet="MarriageRegister" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarriageRegister_Kazi" Association="Self.FK_MarriageRegister_Kazi">
+      <End Role="Kazi" EntitySet="Kazi" />
+      <End Role="MarriageRegister" EntitySet="MarriageRegister" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarriageRegister_Witness" Association="Self.FK_MarriageRegister_Witness">
+      <End Role="Witness" EntitySet="Witness" />
+      <End Role="MarriageRegister" EntitySet="MarriageRegister" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

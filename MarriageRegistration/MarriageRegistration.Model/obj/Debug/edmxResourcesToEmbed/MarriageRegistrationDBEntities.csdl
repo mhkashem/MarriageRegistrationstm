@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarriageRegistrationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Attorney">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrideAttorneyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MarriageRegistrationId" Type="Int32" />
+    <Property Name="BrideAttorneyNID" Type="Int32" />
+    <Property Name="BridegroomAttorneyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BridegroomAttorneyNID" Type="Int32" />
+    <NavigationProperty Name="MarriageRegisters" Relationship="Self.FK_MarriageRegister_Attorney" FromRole="Attorney" ToRole="MarriageRegister" />
+  </EntityType>
+  <EntityType Name="Kazi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NID" Type="Int32" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MarriageRegisters" Relationship="Self.FK_MarriageRegister_Kazi" FromRole="Kazi" ToRole="MarriageRegister" />
+  </EntityType>
+  <EntityType Name="MarriageRegister">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="BridegroomName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BridegroomNID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BrideName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BrideNID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mohor" Type="Double" />
+    <Property Name="Moajjal" Type="Double" />
+    <Property Name="NonMoajjal" Type="Double" />
+    <Property Name="PaidAmount" Type="Double" />
+    <Property Name="NikhaReaderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NikhaReaderNameNID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WitnessId" Type="Int32" />
+    <Property Name="AttorneyId" Type="Int32" />
+    <Property Name="kaziId" Type="Int32" />
+    <Property Name="MarriageRegiNo" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Attorney" Relationship="Self.FK_MarriageRegister_Attorney" FromRole="MarriageRegister" ToRole="Attorney" />
+    <NavigationProperty Name="Kazi" Relationship="Self.FK_MarriageRegister_Kazi" FromRole="MarriageRegister" ToRole="Kazi" />
+    <NavigationProperty Name="Witness" Relationship="Self.FK_MarriageRegister_Witness" FromRole="MarriageRegister" ToRole="Witness" />
+  </EntityType>
+  <EntityType Name="NationalID">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Witness">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Witness1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Witness2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Witness3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MarriageRegisters" Relationship="Self.FK_MarriageRegister_Witness" FromRole="Witness" ToRole="MarriageRegister" />
+  </EntityType>
+  <Association Name="FK_MarriageRegister_Attorney">
+    <End Role="Attorney" Type="Self.Attorney" Multiplicity="0..1" />
+    <End Role="MarriageRegister" Type="Self.MarriageRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attorney">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarriageRegister">
+        <PropertyRef Name="AttorneyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarriageRegister_Kazi">
+    <End Role="Kazi" Type="Self.Kazi" Multiplicity="0..1" />
+    <End Role="MarriageRegister" Type="Self.MarriageRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kazi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarriageRegister">
+        <PropertyRef Name="kaziId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarriageRegister_Witness">
+    <End Role="Witness" Type="Self.Witness" Multiplicity="0..1" />
+    <End Role="MarriageRegister" Type="Self.MarriageRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Witness">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MarriageRegister">
+        <PropertyRef Name="WitnessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarriageRegistrationDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Attorneys" EntityType="Self.Attorney" />
+    <EntitySet Name="Kazis" EntityType="Self.Kazi" />
+    <EntitySet Name="MarriageRegisters" EntityType="Self.MarriageRegister" />
+    <EntitySet Name="NationalIDs" EntityType="Self.NationalID" />
+    <EntitySet Name="Witnesses" EntityType="Self.Witness" />
+    <AssociationSet Name="FK_MarriageRegister_Attorney" Association="Self.FK_MarriageRegister_Attorney">
+      <End Role="Attorney" EntitySet="Attorneys" />
+      <End Role="MarriageRegister" EntitySet="MarriageRegisters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarriageRegister_Kazi" Association="Self.FK_MarriageRegister_Kazi">
+      <End Role="Kazi" EntitySet="Kazis" />
+      <End Role="MarriageRegister" EntitySet="MarriageRegisters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarriageRegister_Witness" Association="Self.FK_MarriageRegister_Witness">
+      <End Role="Witness" EntitySet="Witnesses" />
+      <End Role="MarriageRegister" EntitySet="MarriageRegisters" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

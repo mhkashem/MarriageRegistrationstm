@@ -1,0 +1,33 @@
+﻿
+<div class="container">
+    <div class="col-md-4 col-md-offset-4">
+        <section>
+            <div class="panel panel-default top ">
+                <div class="panel-body">
+                    <h3 class="text-center">Kazi Login</h3>
+                    <form name="userForm">
+                        <div class="form-group" ng-class="{ 'has-error' : userForm.NID.$invalid && !userForm.NID.$pristine }">
+                            <label>NID</label>
+                            <input type="text" name="NID" class="form-control" ng-minlength="2" ng-maxlength="12" ng-model="user.NID" required>
+                            <p ng-show="userForm.NID.$invalid && !userForm.NID.$pristine" class="help-block">NID is required.</p>
+
+                        </div>
+                        
+                        <div class="form-group" ng-class="{ 'has-error' : userForm.Password.$invalid && !userForm.Password.$pristine }">
+                            <label>Password</label>
+                            <input type="password" name="Password" class="form-control" ng-minlength="5" ng-maxlength="12" ng-model="user.Password" required>
+                            <p ng-show="userForm.Password.$invalid && !userForm.Password.$pristine" class="help-block">Password is required.</p>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-block" ng-click="login(user)"  ng-disabled="userForm.$invalid">Login</button>
+                    </form>
+                    <br />
+                    <div ng-if="error" style="background-color:aliceblue; color:red;">
+                        {{mmsg}}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
